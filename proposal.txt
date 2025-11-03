@@ -1,0 +1,53 @@
+//Include headers for file handling the data structures, etc
+
+//Define functions to simulate a players invetorys changes throughout gameplay ex: trading, item durability, invetory status, looting items
+    //Parameters: the std::map for player invetory, number of simulations which can occur random events such as listed above
+
+//Define struct Item to hold Item information for players invetory, EACH player invetory holds 3 Items: Armor, Weapon, Potion
+    // Information for items wil include 
+        //Item name etc: Sword, Healing Potion, Axe, Shield
+        //Durability
+        //Rarity
+
+//Define main functions
+    //Make the map which will store player invetory information, The username will be the key, size 3 array with a list of structs 
+      // weapons, armor, potions 
+
+    //Read data from a file to populate the map
+        // If file doenst open print error and return -1;
+
+    //The format will be be Player name,
+        //then will be the 3 items and the information for them, 
+            //  Item name
+                //Durability
+                    //Rarity
+        // Insert this data inside the lists 
+
+    //Close the file
+
+    //Begin the simulation
+        // Random events for our players will happen 
+            // For 30 intervals 
+                // Per player randomly decide if they want to trade an item to a different player meaning
+                    // Player 1 has an axe Player 2 has a sword they trade their weapons with each other
+                //Looting items, If Item has a higher rarity swap it out and get rid of the old item.
+                //Item durability, Random Durability usage such as using a sword or potion will cause the durability to go down
+                    // If Durability goes to 0 item will break. and item durability wont apply for the item until they replace it
+                //Repair Item
+                    // will add +1 more usage to either weapon or armor or potion 
+                // Robbed by thieves
+                    // Player will loose all items in invetory and wont be affected by any of the things above until they can replace items.
+                //Replacing items
+                    // Player will randomly replace their items. allowing them to be affected by the events again, the looting items event will always be active
+        // Trading 60% Chance
+        //Looting items 40% Chance
+        //Item Durability -1 30% Chance
+        //Repair Item +1  30% Chance
+        //Robbed by Thieves 10%
+        //Replacing items 50% -- Only happens if robbed by thieves or item breaks
+
+        //Print out every players invetory at the end of each iterations and then repeat
+    
+// End of main functions
+            
+            
