@@ -43,7 +43,7 @@
         //Looting items 40% Chance
         //Item Durability -1 30% Chance
         //Repair Item +1  30% Chance
-        //Robbed by Thieves 10%
+        //Robbed by Thieves 5% 
         //Replacing items 50% -- Only happens if robbed by thieves or item breaks
 
         //Print out every players invetory at the end of each iterations and then repeat
