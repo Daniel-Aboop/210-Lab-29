@@ -9,13 +9,12 @@
 #include <random>
 #include <fstream>
 #include <string>
+#include <ctime>
 
 using namespace std;
 
-
-
-const int maxRarity=10,lowRarity=1; //If other item has higher rarity take swap items.
 const int maxDurability=10,lowDurability=0; // If durability reaches 0 Item breaks
+const int maxRarity=10,lowRarity=1; //If other item has higher rarity take swap items.
 struct Item{
     string itemname;
     int durability;
@@ -35,11 +34,12 @@ void repairitem(map<string,array<list<Item>,3>>& Player);
 void robbed(map<string,array<list<Item>,3>>& Player);
 void replaceitems(map<string,array<list<Item>,3>>& Player);
 
+// File path for testing. C:\\Users\\hope4\\Desktop\\COMSC 210 Work\\210-Lab-29\\PartyData.txt
 int main(){
     srand(time(0));
     map<string,array<list<Item>,3>> Players;
     int ranNum = rand() % 100 + 1; // Number for % chances
-    int ranPartyMem = rand() % 8 + 1; // Random Party member chosen for event.
+    int ranPartyMem = rand() % 10 + 1; // Random Party member chosen for event.
      cout<<"Enter file path! ";
     string filepath;
     getline(cin,filepath);
