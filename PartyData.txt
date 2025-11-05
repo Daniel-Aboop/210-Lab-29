@@ -1,0 +1,100 @@
+Aeloria
+Shadowfang
+10
+9
+Dragonplate
+8
+7
+Health Elixir
+5
+6
+Tharion
+Nightblade
+7
+8
+Ironhide
+9
+5
+Mana Draught
+6
+7
+Lyssandra
+Stormpiercer
+9
+6
+Moonshield
+7
+8
+Healing Salve
+10
+9
+Kaelthas
+Doombringer
+5
+10
+Grimmail
+6
+7
+Potion of Swiftness
+8
+6
+Seraphine
+Frostfang
+8
+7
+Crystal Vest
+9
+8
+Elixir of Fire
+4
+9
+Draven
+Oblivion
+6
+9
+Steelguard
+7
+5
+Potion of Shadows
+3
+8
+Wigfrid
+Charged Elding Spear
+10
+10
+Shadowplate
+5
+6
+Healing Draught
+7
+7
+Thalion
+Moonstrike
+9
+7
+Lightmail
+8
+9
+Potion of Strength
+6
+10
+Rhiannon
+Soulreaper
+7
+10
+Boneguard
+6
+8
+Elixir of Wisdom
+9
+6
+Kaelwyn
+Thunderclaw
+8
+6
+Stormplate
+10
+9
+Potion of Speed
+7
+5

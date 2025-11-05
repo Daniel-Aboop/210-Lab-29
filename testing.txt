@@ -1,0 +1,15 @@
+When creating Item randomItem(int choice); It was because during my process in chosing the proposal I stated items can be looted and switched and players are able to switch them during the simulation
+0 creates a weapon and returns a item temp with a weapon
+1 creates a armor and returns item temp with a armor
+other wise it returns a item temp which in thise case would be anything that isnt 1 or 0 which would be a potion
+This ensures that a temp will always be returned when calling this function
+Had to add a key vector which when reading the file will input the names aka the keys into a vector allowing for access to the map easily
+
+When creating the trading function I came accross an error "terminate called after throwing an instance of 'std::length_error'
+  what():  basic_string::_M_create" I thought it was due to way I was reading the file so I changed it and then I thought it was the function itself so I added more precautions and still came across it but it was because vectors read from 0 and my random Party member function was giving random
+  numbers between 1-10 when the vector reads from 0-9 off by one...
+  
+  Creating the lootingItems function was the easiest since its comparing 2 numbers inside of my struct, it choses a random item from 0-2 which will them generate a random item, as stated the number choice will define what item it will be and what item players can maybe switch to
+  Simply just check if the randomItem generated has a higher rarity (10-1) and if it does switch to that item instead. 
+
+  To test my functions I dont simulate at first I just call the functions directly since they automatically do random numbers and choose from the array.
