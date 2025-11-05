@@ -43,6 +43,14 @@ void itemDamage(map<string,array<list<Item>,3>>& Player);
 void repairitem(map<string,array<list<Item>,3>>& Player);
 void robbed(map<string,array<list<Item>,3>>& Player);
 void replaceitems(map<string,array<list<Item>,3>>& Player);
+int randomprob(){
+        int rand1= rand() % 100 + 1;
+        return rand1;
+}
+int randomPartyMember(){
+    int rand2=rand()%10+1;
+    return rand2;
+}
 
 Item randomItem(int choice){
     Item temp;
@@ -73,8 +81,6 @@ Item randomItem(int choice){
 int main(){
     srand(time(0));
     map<string,array<list<Item>,3>> Players;
-    int ranNum = rand() % 100 + 1; // Number for % chances
-    int ranPartyMem = rand() % 10 + 1; // Random Party member chosen for event.
      cout<<"Enter file path! ";
     string filepath;
     getline(cin,filepath);
@@ -87,6 +93,7 @@ int main(){
         cout<<"opened file!"<<endl;
     }
     string line;
+    // This fills out our map data structure.
     while(getline(file,line)){
         string Playername=line;
         array<list<Item>, 3> itemsTemp;
@@ -101,18 +108,32 @@ int main(){
         }
         Players[Playername]=itemsTemp;
     }
+    //Prints players at the start of our function
     printPlayers(Players);
+    cout<<"Simulation begins now"<<endl;
+    for(int i=0;i<30;i++){
+        cout<<i<<endl;
+    }
+
+
+
     file.close();
     return 0;
 }
+    //Prints out all players in the map
 void printPlayers(map<string,array<list<Item>,3>>& Player){
+        //For loop starts here and prints out the players name
     for(auto&[Playername,itemArray]:Player){
         cout<<"Player: "<<Playername<<endl;
+            //Loops 3 times to traverse the array of our struct item.
             for(int i=0;i<3;i++){
                 for(auto& item:itemArray[i]){
-                    
+                    cout<<item.itemname<<endl;
+                    cout<<"Durability: "<<item.durability<<endl;
+                    cout<<"Rarity: "<<item.rarity<<endl;
                 }
             }
+            cout<<endl;
     }
 
 }
