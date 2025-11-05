@@ -18,11 +18,20 @@ const int maxRarity=10,lowRarity=1; //If other item has higher rarity take swap 
 struct Item{
     string itemname;
     int durability;
-    int Rarity;
-
+    int rarity;
+    Item(){
+        itemname="";
+        durability=0;
+        rarity=0;
+    }
     void checkdurability(){
         if(durability<=lowDurability){
             itemname="";
+        }
+    }
+    void checkRarity(int rarity,string itemname){
+        if(this->rarity<rarity){
+            this->itemname=itemname;
         }
     }
 };
@@ -33,6 +42,21 @@ void itemDamage(map<string,array<list<Item>,3>>& Player);
 void repairitem(map<string,array<list<Item>,3>>& Player);
 void robbed(map<string,array<list<Item>,3>>& Player);
 void replaceitems(map<string,array<list<Item>,3>>& Player);
+
+string randomItem(){
+
+    string weapon[]={"Shadowfang", "Nightblade", "Stormpiercer", "Doombringer", "Frostfang","Oblivion", "Venomstrike", "Moonstrike", "Soulreaper", "Thunderclaw"};
+    string armor[] = {"Dragonplate", "Ironhide", "Moonshield", "Grimmail", "Crystal Vest","Steelguard", "Shadowplate", "Lightmail", "Boneguard", "Stormplate"};
+    string potions[]={"Health Elixir", "Mana Draught", "Healing Salve", "Potion of Swiftness","Elixir of Fire", "Potion of Shadows", "Healing Draught", "Potion of Strength","Elixir of Wisdom", "Potion of Speed"};
+
+    int choice=rand() %3;
+    if(choice==0){
+        return weapon[rand()%10];
+    }
+    else if(choice==1){
+        return armor[0];
+    }
+}
 
 // File path for testing. C:\\Users\\hope4\\Desktop\\COMSC 210 Work\\210-Lab-29\\PartyData.txt
 int main(){
@@ -54,7 +78,7 @@ int main(){
     string line;
     while(getline(file,line)){
         string Playername=line;
-         array<list<Item>, 3> itemsTemp;
+        array<list<Item>, 3> itemsTemp;
         for(int i=0;i<3;i++){
 
         }
