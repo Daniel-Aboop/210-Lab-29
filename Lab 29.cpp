@@ -11,6 +11,7 @@
 #include <fstream>
 #include <string>
 #include <ctime>
+#include <vector>
 
 using namespace std;
 
@@ -54,7 +55,7 @@ int randomPartyMember(){
     return rand2;
 }
 int randomitemNum(){
-    int rand3=rand()%3+1;
+    int rand3=rand()%3;
 }
 
 // Added random item generator while not truly random it gets the job done and its meant to replace lost items etc
@@ -87,6 +88,7 @@ Item randomItem(int choice){
 int main(){
     srand(time(0));
     map<string,array<list<Item>,3>> Players;
+    vector<string> playernames;
      cout<<"Enter file path! ";
     string filepath;
     getline(cin,filepath);
@@ -102,6 +104,7 @@ int main(){
     // This fills out our map data structure.
     while(getline(file,line)){
         string Playername=line;
+        playernames.push_back(Playername);
         array<list<Item>, 3> itemsTemp;
         for(int i=0;i<3;i++){
             Item temp;
@@ -121,12 +124,7 @@ int main(){
     for(int i=0;i<30;i++){
         cout<<"Iteration: "<<i+1<<endl;
         if(randomprob()<=60){
-            cout<<"Trading"<<endl;
-            int temp1=randomPartyMember();
-            int temp2=randomPartyMember();
-            while(temp1==temp2){
-                    temp2=randomPartyMember();
-            }
+           trading(Players,playernames);
         }
         if(randomprob()<=40){
             cout<<"Looting"<<endl;
@@ -160,4 +158,17 @@ void printPlayers(map<string,array<list<Item>,3>>& Player){
             cout<<endl;
     }
 
+}
+
+void trading(map<string,array<list<Item>,3>>& Player,const vector<string>& playernames){
+    cout<<"Trading started!"<<endl;
+    int temp1=randomPartyMember();
+    int temp2=randomPartyMember();
+    while(temp1==temp2){
+        temp2=randomPartyMember();
+    }
+    int temp3=randomitemNum();
+    string tempName=playernames[temp1];
+    string tempName2=playernames[temp2];
+    
 }
