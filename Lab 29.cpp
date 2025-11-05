@@ -51,7 +51,14 @@ int main(){
     else{
         cout<<"opened file!"<<endl;
     }
-    
+    string line;
+    while(getline(file,line)){
+        string Playername=line;
+         array<list<Item>, 3> itemsTemp;
+        for(int i=0;i<3;i++){
 
+        }
+    }
+    file.close();
     return 0;
 }
