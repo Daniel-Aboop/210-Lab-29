@@ -20,6 +20,7 @@ struct Item{
     string itemname;
     int durability;
     int rarity;
+    bool robbed=false;
     Item(){
         itemname="";
         durability=0;
@@ -43,6 +44,7 @@ void itemDamage(map<string,array<list<Item>,3>>& Player);
 void repairitem(map<string,array<list<Item>,3>>& Player);
 void robbed(map<string,array<list<Item>,3>>& Player);
 void replaceitems(map<string,array<list<Item>,3>>& Player);
+//Added the randomprob and random party member for ease of acceess of a random number;
 int randomprob(){
         int rand1= rand() % 100 + 1;
         return rand1;
@@ -51,7 +53,11 @@ int randomPartyMember(){
     int rand2=rand()%10+1;
     return rand2;
 }
+int randomitemNum(){
+    
+}
 
+// Added random item generator while not truly random it gets the job done and its meant to replace lost items etc
 Item randomItem(int choice){
     Item temp;
     string weapon[]={"Shadowfang", "Nightblade", "Stormpiercer", "Doombringer", "Frostfang","Oblivion", "Venomstrike", "Moonstrike", "Soulreaper", "Thunderclaw"};
@@ -108,16 +114,29 @@ int main(){
         }
         Players[Playername]=itemsTemp;
     }
+    file.close();
     //Prints players at the start of our function
     printPlayers(Players);
     cout<<"Simulation begins now"<<endl;
     for(int i=0;i<30;i++){
-        cout<<i<<endl;
-    }
-
-
-
-    file.close();
+        cout<<"Iteration: "<<i+1<<endl;
+        if(randomprob()<=60){
+            cout<<"Trading"<<endl;
+        }
+        if(randomprob()<=40){
+            cout<<"Looting"<<endl;
+        }
+        if(randomprob()<=30){
+            cout<<"Item loss durability"<<endl;
+        }
+        if(randomprob()<=5){
+            cout<<"Robbed by thieves"<<endl;
+        }
+        if(randomprob()<=50){
+            cout<<"replacing items"<<endl;
+        }
+        cout<<endl;
+    }   
     return 0;
 }
     //Prints out all players in the map
