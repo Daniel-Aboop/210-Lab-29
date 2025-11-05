@@ -12,4 +12,4 @@ When creating the trading function I came accross an error "terminate called aft
   Creating the lootingItems function was the easiest since its comparing 2 numbers inside of my struct, it choses a random item from 0-2 which will them generate a random item, as stated the number choice will define what item it will be and what item players can maybe switch to
   Simply just check if the randomItem generated has a higher rarity (10-1) and if it does switch to that item instead. 
 
-  To test my functions I dont simulate at first I just call the functions directly since they automatically do random numbers and choose fromt he array.
+  To test my functions I dont simulate at first I just call the functions directly since they automatically do random numbers and choose from the array.

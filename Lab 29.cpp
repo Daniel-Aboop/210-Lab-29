@@ -14,8 +14,7 @@
 
 using namespace std;
 
-const int maxDurability=10,lowDurability=0; // If durability reaches 0 Item breaks
-const int maxRarity=10,lowRarity=1; //If other item has higher rarity take swap items.
+
 struct Item{
     string itemname;
     int durability;
@@ -35,9 +34,6 @@ struct Item{
         if(this->rarity<rarity){
             this->itemname=itemname;
         }
-    }
-    void robbed(){
-        
     }
 };
 void printPlayers(map<string,array<list<Item>,3>>& Player);
@@ -235,27 +231,36 @@ void repairitem(map<string,array<list<Item>,3>>& Player,const vector<string>& pl
     int choiceItem=randomitemNum();
     int randompartymember=randomPartyMember();
     string tempName=playernames[randompartymember];
-    Item temp2=Player[tempName][choiceItem].front();
+    auto& temp2 = Player[tempName][choiceItem].front();
     temp2.durability++;
-    Player[tempName][choiceItem].front()=temp2;
     cout<<tempName<<" added +1 durability to "<<temp2.itemname<<endl;
     cout<<endl;
 }
+
 void itemdamage(map<string,array<list<Item>,3>>& Player,const vector<string>& playernames){
     cout<<"Durability loss!"<<endl;
     int choiceItem=randomitemNum();
     int randompartymember=randomPartyMember();
     string tempName=playernames[randompartymember];
-    Item temp2=Player[tempName][choiceItem].front();
+    auto& temp2 = Player[tempName][choiceItem].front();
     temp2.durability--;
     if(temp2.durability==0){
-        
+        cout<<tempName<<"'s "<<temp2.itemname<<" has been broken!"<<endl;
+        temp2.checkdurability();
     }
     else{
     cout<<tempName<<" lost 1 durability on "<<temp2.itemname<<endl;
     cout<<endl;
     }
 }
+
 void robbed(map<string,array<list<Item>,3>>& Player,const vector<string>& playernames){
+    cout<<"Random player being robbed...unlucky"<<endl;
+    int randompartymember=randomPartyMember();
+    string tempName=playernames[randompartymember];
+    for(int i=0;i<)
+    auto& temp2 = Player[tempName][choiceItem].front();
+}
+void replaceitems(map<string,array<list<Item>,3>>& Player,const vector<string>& playernames){
 
 }
