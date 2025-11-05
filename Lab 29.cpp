@@ -41,6 +41,7 @@ void printPlayers(map<string,array<list<Item>,3>>& Player);
 void trading(map<string,array<list<Item>,3>>& Player,const vector<string>& playernames);
 void lootingItems(map<string,array<list<Item>,3>>& Player,const vector<string>& playernames);
 void repairitem(map<string,array<list<Item>,3>>& Player,const vector<string>& playernames);
+void itemdamage(map<string,array<list<Item>,3>>& Player,const vector<string>& playernames);
 void robbed(map<string,array<list<Item>,3>>& Player,const vector<string>& playernames);
 void replaceitems(map<string,array<list<Item>,3>>& Player,const vector<string>& playernames);
 //Added the randomprob and random party member and item for ease of access of a random number within those bounds
@@ -132,8 +133,12 @@ int main(){
             lootingItems(Players,playernames);
         }
         if(randomprob()<=30){
+            cout<<"Item gained durability"<<endl;
+        }
+        if(randomprob()<=30){
             cout<<"Item loss durability"<<endl;
         }
+        
         if(randomprob()<=5){
             cout<<"Robbed by thieves"<<endl;
         }
@@ -145,8 +150,10 @@ int main(){
     }   
         */
     cout<<"Results after simulation: "<<endl;
+    printPlayers(Players);
     trading(Players,playernames);
     lootingItems(Players,playernames);
+    repairitem(Players,playernames);
     printPlayers(Players);
     return 0;
 }
@@ -216,5 +223,22 @@ void lootingItems(map<string,array<list<Item>,3>>& Player,const vector<string>& 
 }
 
 void repairitem(map<string,array<list<Item>,3>>& Player,const vector<string>& playernames){
-
+    cout<<"Reparing started!"<<endl;
+    int choiceItem=randomitemNum();
+    int randompartymember=randomPartyMember();
+    string tempName=playernames[randompartymember];
+    Item temp2=Player[tempName][choiceItem].front();
+    temp2.durability++;
+    cout<<"Player: "<<tempName<<" added +1 durability to "<<temp2.itemname<<endl;
+    cout<<endl;
+}
+void itemdamage(map<string,array<list<Item>,3>>& Player,const vector<string>& playernames){
+    cout<<"Durability loss!"<<endl;
+    int choiceItem=randomitemNum();
+    int randompartymember=randomPartyMember();
+    string tempName=playernames[randompartymember];
+    Item temp2=Player[tempName][choiceItem].front();
+    temp2.durability++;
+    cout<<"Player: "<<tempName<<" lost 1 durability on "<<temp2.itemname<<endl;
+    cout<<endl;
 }
