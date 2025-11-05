@@ -150,6 +150,7 @@ int main(){
     lootingItems(Players,playernames);
     repairitem(Players,playernames);
     itemdamage(Players,playernames);
+    robbed(Players,playernames);
     printPlayers(Players);
     return 0;
 }
@@ -161,6 +162,7 @@ void printPlayers(map<string,array<list<Item>,3>>& Player){
             //Loops 3 times to traverse the array of our struct item.
             for(int i=0;i<3;i++){
                 for(auto& item:itemArray[i]){
+
                     cout<<item.itemname<<endl;
                     cout<<"Durability: "<<item.durability<<endl;
                     cout<<"Rarity: "<<item.rarity<<endl;
@@ -210,7 +212,12 @@ void lootingItems(map<string,array<list<Item>,3>>& Player,const vector<string>& 
     string tempName=playernames[randompartymember];
     Item temp2=Player[tempName][choiceItem].front();
 
-    if(temp.rarity>temp2.rarity){
+    if(temp2.robbed==true){
+        cout<<tempName<<" gained "<<temp.itemname;
+        Player[tempName][choiceItem].front()=temp;
+    }
+
+    else if(temp.rarity>temp2.rarity){
         cout<<tempName<<" swapped "<<temp2.itemname<<" for "<<temp.itemname;
         Player[tempName][choiceItem].front()=temp;
         cout<<endl;
@@ -228,13 +235,15 @@ void repairitem(map<string,array<list<Item>,3>>& Player,const vector<string>& pl
     int randompartymember=randomPartyMember();
     string tempName=playernames[randompartymember];
     auto& temp2 = Player[tempName][choiceItem].front();
-    if(temp2.durability>=maxDurability){
-        cout<<tempName<<" has max durability on "<<temp2.itemname<<" no repair was done"<<endl;
-    }
-    else{
-        temp2.durability++;
-        cout<<tempName<<" added +1 durability to "<<temp2.itemname<<endl;
-        cout<<endl;
+    if(temp2.robbed==false){
+        if(temp2.durability>=maxDurability){
+            cout<<tempName<<" has max durability on "<<temp2.itemname<<" no repair was done"<<endl;
+        }
+        else{
+            temp2.durability++;
+            cout<<tempName<<" added +1 durability to "<<temp2.itemname<<endl;
+            cout<<endl;
+        }
     }
 }
 
@@ -244,14 +253,16 @@ void itemdamage(map<string,array<list<Item>,3>>& Player,const vector<string>& pl
     int randompartymember=randomPartyMember();
     string tempName=playernames[randompartymember];
     auto& temp2 = Player[tempName][choiceItem].front();
-    temp2.durability--;
-    if(temp2.durability==0){
-        cout<<tempName<<"'s "<<temp2.itemname<<" has been broken!"<<endl;
-        temp2.checkdurability();
-    }
-    else{
-    cout<<tempName<<" lost 1 durability on "<<temp2.itemname<<endl;
-    cout<<endl;
+    if(temp2.robbed==false){
+        temp2.durability--;
+        if(temp2.durability==0){
+            cout<<tempName<<"'s "<<temp2.itemname<<" has been broken!"<<endl;
+            temp2.checkdurability();
+        }
+        else{
+        cout<<tempName<<" lost 1 durability on "<<temp2.itemname<<endl;
+        cout<<endl;
+        }
     }
 }
 
@@ -263,7 +274,11 @@ void robbed(map<string,array<list<Item>,3>>& Player,const vector<string>& player
     auto& temp2 = Player[tempName][i].front();
     temp2.robbed=true;
     temp2.itemname="";
+    temp2.durability=0;
+    temp2.rarity=0;
     }
+    cout<<tempName<<" lost all of their items!"<<endl;
+    cout<<endl;
 }
 void replaceitems(map<string,array<list<Item>,3>>& Player,const vector<string>& playernames){
 
