@@ -121,15 +121,15 @@ int main(){
     }
     file.close();
     //Prints players at the start of our function
-    printPlayers(Players);
-   /* cout<<"Simulation begins now"<<endl;
+  /*   printPlayers(Players);
+   cout<<"Simulation begins now"<<endl;
     for(int i=0;i<30;i++){
         cout<<"Iteration: "<<i+1<<endl;
         if(randomprob()<=60){
-         trading(Players,playernames);
+            trading(Players,playernames);
         }
         if(randomprob()<=40){
-            
+            lootingItems(Players,playernames);
         }
         if(randomprob()<=30){
             cout<<"Item loss durability"<<endl;
@@ -146,6 +146,7 @@ int main(){
         */
     cout<<"Results after simulation: "<<endl;
     trading(Players,playernames);
+    lootingItems(Players,playernames);
     printPlayers(Players);
     return 0;
 }
@@ -193,6 +194,7 @@ void trading(map<string,array<list<Item>,3>>& Player,const vector<string>& playe
             cout<<tempName2<<" has a empty slot!"<<endl;
         }
     }
+    cout<<endl;
 }
 
 void lootingItems(map<string,array<list<Item>,3>>& Player,const vector<string>& playernames){
@@ -204,11 +206,15 @@ void lootingItems(map<string,array<list<Item>,3>>& Player,const vector<string>& 
     Item temp2=Player[tempName][choiceItem].front();
 
     if(temp.rarity>temp2.rarity){
-        cout<<"Player: "<<tempName<<"swapped ";
-        if()
+        cout<<"Player: "<<tempName<<" swapped "<<temp2.itemname<<" for "<<temp.itemname;
         Player[tempName][choiceItem].front()=temp;
     }
     else{
-        cout<<"Random item was lower rarity"
+        cout<<"Player: "<<tempName<<" didnt want Random item it was a lower rarity"<<endl;
     }
+    cout<<endl;
+}
+
+void repairitem(map<string,array<list<Item>,3>>& Player,const vector<string>& playernames){
+
 }
