@@ -51,7 +51,7 @@ int randomprob(){
         return rand1;
 }
 int randomPartyMember(){
-    int rand2=rand()%10+1;
+    int rand2=rand()%10;
     return rand2;
 }
 int randomitemNum(){
@@ -103,8 +103,11 @@ int main(){
     }
     string line;
     // This fills out our map data structure.
-    while(getline(file,line)){
-        string Playername=line;
+    while(true){
+        string Playername;
+        if(!getline(file,Playername)){
+            break;
+        }
         playernames.push_back(Playername);
         array<list<Item>, 3> itemsTemp;
         for(int i=0;i<3;i++){
@@ -125,7 +128,7 @@ int main(){
     for(int i=0;i<30;i++){
         cout<<"Iteration: "<<i+1<<endl;
         if(randomprob()<=60){
-         // trading(Players,playernames);
+         trading(Players,playernames);
         }
         if(randomprob()<=40){
             cout<<"Looting"<<endl;
@@ -143,7 +146,6 @@ int main(){
     }   
     cout<<"Results after simulation: "<<endl;
     printPlayers(Players);
-    cout<<playernames.size();
     return 0;
 }
     //Prints out all players in the map
@@ -179,6 +181,8 @@ void trading(map<string,array<list<Item>,3>>& Player,const vector<string>& playe
         Item tempItem2=Player[tempName2][temp3].front();
         Player[tempName][temp3].front()=tempItem2;
         Player[tempName2][temp3].front()=tempItem;
+        cout<<"Trade successful!"<<endl;
+        cout<<tempName<<" traded with "<<tempName2<<endl;
     }
     else{
         cout<<"Trade failed because: ";
