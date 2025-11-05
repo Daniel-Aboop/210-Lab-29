@@ -117,7 +117,7 @@ int main(){
     }
     file.close();
     //Prints players at the start of our function
-  /*   printPlayers(Players);
+    printPlayers(Players);
    cout<<"Simulation begins now"<<endl;
     for(int i=0;i<30;i++){
         cout<<"Iteration: "<<i+1<<endl;
@@ -137,25 +137,19 @@ int main(){
             robbed(Players,playernames);
         }
         if(randomprob()<=50){
-            cout<<"replacing items"<<endl;
+            replaceitems(Players,playernames);
         }
         cout<<endl;
         
     }   
-        */
     cout<<"Results after simulation: "<<endl;
-    
-    trading(Players,playernames);
-    lootingItems(Players,playernames);
-    repairitem(Players,playernames);
-    itemdamage(Players,playernames);
-    robbed(Players,playernames);
     printPlayers(Players);
     return 0;
 }
     //Prints out all players in the map
 void printPlayers(map<string,array<list<Item>,3>>& Player){
         //For loop starts here and prints out the players name
+        cout<<endl;
     bool checkifempty=false;
     for(auto&[Playername,itemArray]:Player){
         cout<<"Player: "<<Playername<<endl;
@@ -180,7 +174,7 @@ void printPlayers(map<string,array<list<Item>,3>>& Player){
                 }
             }
         }
-            cout<<endl;
+        cout<<endl;
     }
 }
 
@@ -225,14 +219,13 @@ void lootingItems(map<string,array<list<Item>,3>>& Player,const vector<string>& 
     Item temp2=Player[tempName][choiceItem].front();
 
     if(temp2.robbed==true){
-        cout<<tempName<<" gained "<<temp.itemname;
+        cout<<tempName<<" gained "<<temp.itemname<<endl;
         Player[tempName][choiceItem].front()=temp;
     }
 
     else if(temp.rarity>temp2.rarity){
-        cout<<tempName<<" swapped "<<temp2.itemname<<" for "<<temp.itemname;
+        cout<<tempName<<" swapped "<<temp2.itemname<<" for "<<temp.itemname<<endl;
         Player[tempName][choiceItem].front()=temp;
-        cout<<endl;
     }
     else{
         cout<<tempName<<" didnt want Random item it was a lower rarity"<<endl;
@@ -298,7 +291,8 @@ void replaceitems(map<string,array<list<Item>,3>>& Player,const vector<string>& 
     int choiceItem=randomitemNum();
     auto& temp2 = Player[tempName][choiceItem].front();
     if(temp2.robbed==true){
-
+        Item temp=randomItem(choiceItem);
+        temp2=temp; 
     }
     else{
         cout<<tempName<<" does not need a item to be replaced..."<<endl;
