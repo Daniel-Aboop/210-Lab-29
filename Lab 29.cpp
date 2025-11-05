@@ -5,6 +5,7 @@
 #include <vector>
 #include <map>
 #include <list>
+#include <array>
 #include <algorithm>
 #include <random>
 #include <fstream>
@@ -43,19 +44,28 @@ void repairitem(map<string,array<list<Item>,3>>& Player);
 void robbed(map<string,array<list<Item>,3>>& Player);
 void replaceitems(map<string,array<list<Item>,3>>& Player);
 
-string randomItem(int choice){
-
+Item randomItem(int choice){
+    Item temp;
     string weapon[]={"Shadowfang", "Nightblade", "Stormpiercer", "Doombringer", "Frostfang","Oblivion", "Venomstrike", "Moonstrike", "Soulreaper", "Thunderclaw"};
     string armor[] = {"Dragonplate", "Ironhide", "Moonshield", "Grimmail", "Crystal Vest","Steelguard", "Shadowplate", "Lightmail", "Boneguard", "Stormplate"};
     string potions[]={"Health Elixir", "Mana Draught", "Healing Salve", "Potion of Swiftness","Elixir of Fire", "Potion of Shadows", "Healing Draught", "Potion of Strength","Elixir of Wisdom", "Potion of Speed"};
     if(choice==0){
-        return weapon[rand()%10];
+        temp.itemname=weapon[rand()%10];
+        temp.durability=rand()%11;
+        temp.rarity=rand()%10+1;
+        return temp;
     }
     else if(choice==1){
-        return armor[0];
+        temp.itemname=armor[rand()%10];
+        temp.durability=rand()%11;
+        temp.rarity=rand()%10+1;
+        return temp;
     }
     else{
-        return potions[rand()%10];
+        temp.itemname=potions[rand()%10];
+        temp.durability=rand()%11;
+        temp.rarity=rand()%10+1;
+        return temp;
     }
 }
 
@@ -81,9 +91,28 @@ int main(){
         string Playername=line;
         array<list<Item>, 3> itemsTemp;
         for(int i=0;i<3;i++){
-
+            Item temp;
+            getline(file,temp.itemname);
+            getline(file,line);
+            temp.durability=stoi(line);
+            getline(file,line);
+            temp.rarity=stoi(line);
+            itemsTemp[i].push_back(temp);
         }
+        Players[Playername]=itemsTemp;
     }
+    printPlayers(Players);
     file.close();
     return 0;
+}
+void printPlayers(map<string,array<list<Item>,3>>& Player){
+    for(auto&[Playername,itemArray]:Player){
+        cout<<"Player: "<<Playername<<endl;
+            for(int i=0;i<3;i++){
+                for(auto& item:itemArray[i]){
+                    
+                }
+            }
+    }
+
 }
