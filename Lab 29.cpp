@@ -56,6 +56,7 @@ int randomPartyMember(){
 }
 int randomitemNum(){
     int rand3=rand()%3;
+    return rand3;
 }
 
 // Added random item generator while not truly random it gets the job done and its meant to replace lost items etc
@@ -140,6 +141,9 @@ int main(){
         }
         cout<<endl;
     }   
+    cout<<"Results after simulation: "<<endl;
+    printPlayers(Players);
+
     return 0;
 }
     //Prints out all players in the map
@@ -170,5 +174,19 @@ void trading(map<string,array<list<Item>,3>>& Player,const vector<string>& playe
     int temp3=randomitemNum();
     string tempName=playernames[temp1];
     string tempName2=playernames[temp2];
-    
+    if(!Player[tempName][temp3].empty() && !Player[tempName2][temp3].empty()){
+        Item tempItem=Player[tempName][temp3].front();
+        Item tempItem2=Player[tempName2][temp3].front();
+        Player[tempName][temp3].front()=tempItem2;
+        Player[tempName2][temp3].front()=tempItem;
+    }
+    else{
+        cout<<"Trade failed because: ";
+        if(Player[tempName][temp3].empty()==true){
+            cout<<tempName<<" has a empty slot!"<<endl;
+        }
+        else if(Player[tempName2][temp3].empty()==true){
+            cout<<tempName2<<" has a empty slot!"<<endl;
+        }
+    }
 }
