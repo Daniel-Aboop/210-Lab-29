@@ -43,18 +43,19 @@ void repairitem(map<string,array<list<Item>,3>>& Player);
 void robbed(map<string,array<list<Item>,3>>& Player);
 void replaceitems(map<string,array<list<Item>,3>>& Player);
 
-string randomItem(){
+string randomItem(int choice){
 
     string weapon[]={"Shadowfang", "Nightblade", "Stormpiercer", "Doombringer", "Frostfang","Oblivion", "Venomstrike", "Moonstrike", "Soulreaper", "Thunderclaw"};
     string armor[] = {"Dragonplate", "Ironhide", "Moonshield", "Grimmail", "Crystal Vest","Steelguard", "Shadowplate", "Lightmail", "Boneguard", "Stormplate"};
     string potions[]={"Health Elixir", "Mana Draught", "Healing Salve", "Potion of Swiftness","Elixir of Fire", "Potion of Shadows", "Healing Draught", "Potion of Strength","Elixir of Wisdom", "Potion of Speed"};
-
-    int choice=rand() %3;
     if(choice==0){
         return weapon[rand()%10];
     }
     else if(choice==1){
         return armor[0];
+    }
+    else{
+        return potions[rand()%10];
     }
 }
 
