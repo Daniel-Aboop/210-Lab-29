@@ -6,4 +6,4 @@ This ensures that a temp will always be returned when calling this function
 
 When creating the trading function I came accross an error "terminate called after throwing an instance of 'std::length_error'
   what():  basic_string::_M_create" I thought it was due to way I was reading the file so I changed it and then I thought it was the function itself so I added more precautions and still came across it but it was because vectors read from 0 and my random Party member function was giving random
-  numbers between 1-10 when the vector reads from 0-9
+  numbers between 1-10 when the vector reads from 0-9 off by one...

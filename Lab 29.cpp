@@ -40,11 +40,10 @@ struct Item{
 };
 void printPlayers(map<string,array<list<Item>,3>>& Player);
 void trading(map<string,array<list<Item>,3>>& Player,const vector<string>& playernames);
-void lootingItems(map<string,array<list<Item>,3>>& Player);
-void itemDamage(map<string,array<list<Item>,3>>& Player);
-void repairitem(map<string,array<list<Item>,3>>& Player);
-void robbed(map<string,array<list<Item>,3>>& Player);
-void replaceitems(map<string,array<list<Item>,3>>& Player);
+void lootingItems(map<string,array<list<Item>,3>>& Player,const vector<string>& playernames);
+void repairitem(map<string,array<list<Item>,3>>& Player,const vector<string>& playernames);
+void robbed(map<string,array<list<Item>,3>>& Player,const vector<string>& playernames);
+void replaceitems(map<string,array<list<Item>,3>>& Player,const vector<string>& playernames);
 //Added the randomprob and random party member and item for ease of access of a random number within those bounds
 int randomprob(){
         int rand1= rand() % 100 + 1;
@@ -131,7 +130,7 @@ int main(){
          trading(Players,playernames);
         }
         if(randomprob()<=40){
-            cout<<"Looting"<<endl;
+            
         }
         if(randomprob()<=30){
             cout<<"Item loss durability"<<endl;
@@ -193,4 +192,10 @@ void trading(map<string,array<list<Item>,3>>& Player,const vector<string>& playe
             cout<<tempName2<<" has a empty slot!"<<endl;
         }
     }
+}
+
+void lootingItems(map<string,array<list<Item>,3>>& Player,const vector<string>& playernames){
+    int choiceItem=randomitemNum();
+    Item temp=randomItem(choiceItem);
+    int randomPartymember=randomPartyMember();
 }
