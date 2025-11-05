@@ -11,8 +11,8 @@
 #include <fstream>
 #include <string>
 #include <ctime>
-#include <vector>
-
+#include <thread>  
+#include <chrono>
 using namespace std;
 
 const int maxDurability=10,lowDurability=0; // If durability reaches 0 Item breaks
@@ -142,6 +142,7 @@ int main(){
             cout<<"replacing items"<<endl;
         }
         cout<<endl;
+        
     }   
     cout<<"Results after simulation: "<<endl;
     printPlayers(Players);
@@ -162,7 +163,6 @@ void printPlayers(map<string,array<list<Item>,3>>& Player){
             }
             cout<<endl;
     }
-
 }
 
 void trading(map<string,array<list<Item>,3>>& Player,const vector<string>& playernames){
