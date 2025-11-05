@@ -292,5 +292,15 @@ void robbed(map<string,array<list<Item>,3>>& Player,const vector<string>& player
     cout<<endl;
 }
 void replaceitems(map<string,array<list<Item>,3>>& Player,const vector<string>& playernames){
+    cout<<"Replacing lost items...."<<endl;
+    int randompartymember=randomPartyMember();
+    string tempName=playernames[randompartymember];
+    int choiceItem=randomitemNum();
+    auto& temp2 = Player[tempName][choiceItem].front();
+    if(temp2.robbed==true){
 
+    }
+    else{
+        cout<<tempName<<" does not need a item to be replaced..."<<endl;
+    }
 }
