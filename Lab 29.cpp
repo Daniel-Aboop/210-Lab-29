@@ -39,7 +39,7 @@ struct Item{
     }
 };
 void printPlayers(map<string,array<list<Item>,3>>& Player);
-void trading(map<string,array<list<Item>,3>>& Player);
+void trading(map<string,array<list<Item>,3>>& Player,const vector<string>& playernames);
 void lootingItems(map<string,array<list<Item>,3>>& Player);
 void itemDamage(map<string,array<list<Item>,3>>& Player);
 void repairitem(map<string,array<list<Item>,3>>& Player);
@@ -125,7 +125,7 @@ int main(){
     for(int i=0;i<30;i++){
         cout<<"Iteration: "<<i+1<<endl;
         if(randomprob()<=60){
-           trading(Players,playernames);
+         // trading(Players,playernames);
         }
         if(randomprob()<=40){
             cout<<"Looting"<<endl;
@@ -143,7 +143,7 @@ int main(){
     }   
     cout<<"Results after simulation: "<<endl;
     printPlayers(Players);
-
+    cout<<playernames.size();
     return 0;
 }
     //Prints out all players in the map
@@ -174,7 +174,7 @@ void trading(map<string,array<list<Item>,3>>& Player,const vector<string>& playe
     int temp3=randomitemNum();
     string tempName=playernames[temp1];
     string tempName2=playernames[temp2];
-    if(!Player[tempName][temp3].empty() && !Player[tempName2][temp3].empty()){
+    if(Player.find(tempName) != Player.end() && Player.find(tempName2) != Player.end() && !Player[tempName][temp3].empty() &&  !Player[tempName2][temp3].empty()){
         Item tempItem=Player[tempName][temp3].front();
         Item tempItem2=Player[tempName2][temp3].front();
         Player[tempName][temp3].front()=tempItem2;
@@ -182,10 +182,10 @@ void trading(map<string,array<list<Item>,3>>& Player,const vector<string>& playe
     }
     else{
         cout<<"Trade failed because: ";
-        if(Player[tempName][temp3].empty()==true){
+        if(Player[tempName][temp3].empty()){
             cout<<tempName<<" has a empty slot!"<<endl;
         }
-        else if(Player[tempName2][temp3].empty()==true){
+        else if(Player[tempName2][temp3].empty()){
             cout<<tempName2<<" has a empty slot!"<<endl;
         }
     }
