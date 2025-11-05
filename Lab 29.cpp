@@ -36,6 +36,9 @@ struct Item{
             this->itemname=itemname;
         }
     }
+    void robbed(){
+        
+    }
 };
 void printPlayers(map<string,array<list<Item>,3>>& Player);
 void trading(map<string,array<list<Item>,3>>& Player,const vector<string>& playernames);
@@ -150,10 +153,11 @@ int main(){
     }   
         */
     cout<<"Results after simulation: "<<endl;
-    printPlayers(Players);
+    
     trading(Players,playernames);
     lootingItems(Players,playernames);
     repairitem(Players,playernames);
+    itemdamage(Players,playernames);
     printPlayers(Players);
     return 0;
 }
@@ -185,12 +189,14 @@ void trading(map<string,array<list<Item>,3>>& Player,const vector<string>& playe
     string tempName=playernames[temp1];
     string tempName2=playernames[temp2];
     if(Player.find(tempName) != Player.end() && Player.find(tempName2) != Player.end() && !Player[tempName][temp3].empty() &&  !Player[tempName2][temp3].empty()){
+     
         Item tempItem=Player[tempName][temp3].front();
         Item tempItem2=Player[tempName2][temp3].front();
+        cout<<"Trade successful!"<<endl;
+        cout<<tempName<<" traded "<<tempItem.itemname<<" with "<<tempName2<<"'s "<<tempItem2.itemname<<endl;
         Player[tempName][temp3].front()=tempItem2;
         Player[tempName2][temp3].front()=tempItem;
-        cout<<"Trade successful!"<<endl;
-        cout<<tempName<<" traded with "<<tempName2<<endl;
+       
     }
     else{
         cout<<"Trade failed because: ";
@@ -213,13 +219,15 @@ void lootingItems(map<string,array<list<Item>,3>>& Player,const vector<string>& 
     Item temp2=Player[tempName][choiceItem].front();
 
     if(temp.rarity>temp2.rarity){
-        cout<<"Player: "<<tempName<<" swapped "<<temp2.itemname<<" for "<<temp.itemname;
+        cout<<tempName<<" swapped "<<temp2.itemname<<" for "<<temp.itemname;
         Player[tempName][choiceItem].front()=temp;
+        cout<<endl;
     }
     else{
-        cout<<"Player: "<<tempName<<" didnt want Random item it was a lower rarity"<<endl;
+        cout<<tempName<<" didnt want Random item it was a lower rarity"<<endl;
+        cout<<endl;
     }
-    cout<<endl;
+    
 }
 
 void repairitem(map<string,array<list<Item>,3>>& Player,const vector<string>& playernames){
@@ -229,7 +237,8 @@ void repairitem(map<string,array<list<Item>,3>>& Player,const vector<string>& pl
     string tempName=playernames[randompartymember];
     Item temp2=Player[tempName][choiceItem].front();
     temp2.durability++;
-    cout<<"Player: "<<tempName<<" added +1 durability to "<<temp2.itemname<<endl;
+    Player[tempName][choiceItem].front()=temp2;
+    cout<<tempName<<" added +1 durability to "<<temp2.itemname<<endl;
     cout<<endl;
 }
 void itemdamage(map<string,array<list<Item>,3>>& Player,const vector<string>& playernames){
@@ -238,7 +247,15 @@ void itemdamage(map<string,array<list<Item>,3>>& Player,const vector<string>& pl
     int randompartymember=randomPartyMember();
     string tempName=playernames[randompartymember];
     Item temp2=Player[tempName][choiceItem].front();
-    temp2.durability++;
-    cout<<"Player: "<<tempName<<" lost 1 durability on "<<temp2.itemname<<endl;
+    temp2.durability--;
+    if(temp2.durability==0){
+        
+    }
+    else{
+    cout<<tempName<<" lost 1 durability on "<<temp2.itemname<<endl;
     cout<<endl;
+    }
+}
+void robbed(map<string,array<list<Item>,3>>& Player,const vector<string>& playernames){
+
 }

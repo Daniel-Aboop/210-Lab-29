@@ -58,10 +58,10 @@ Steelguard
 Potion of Shadows
 3
 8
-Elyndra
-Venomstrike
+Wigfrid
+Charged Elding Spear
 10
-8
+10
 Shadowplate
 5
 6
