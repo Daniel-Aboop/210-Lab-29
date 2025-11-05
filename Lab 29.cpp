@@ -11,8 +11,7 @@
 #include <fstream>
 #include <string>
 #include <ctime>
-#include <thread>  
-#include <chrono>
+
 using namespace std;
 
 const int maxDurability=10,lowDurability=0; // If durability reaches 0 Item breaks
@@ -123,7 +122,7 @@ int main(){
     file.close();
     //Prints players at the start of our function
     printPlayers(Players);
-    cout<<"Simulation begins now"<<endl;
+   /* cout<<"Simulation begins now"<<endl;
     for(int i=0;i<30;i++){
         cout<<"Iteration: "<<i+1<<endl;
         if(randomprob()<=60){
@@ -144,7 +143,9 @@ int main(){
         cout<<endl;
         
     }   
+        */
     cout<<"Results after simulation: "<<endl;
+    trading(Players,playernames);
     printPlayers(Players);
     return 0;
 }
@@ -195,7 +196,19 @@ void trading(map<string,array<list<Item>,3>>& Player,const vector<string>& playe
 }
 
 void lootingItems(map<string,array<list<Item>,3>>& Player,const vector<string>& playernames){
+    cout<<"Looting started!"<<endl;
     int choiceItem=randomitemNum();
     Item temp=randomItem(choiceItem);
-    int randomPartymember=randomPartyMember();
+    int randompartymember=randomPartyMember();
+    string tempName=playernames[randompartymember];
+    Item temp2=Player[tempName][choiceItem].front();
+
+    if(temp.rarity>temp2.rarity){
+        cout<<"Player: "<<tempName<<"swapped ";
+        if()
+        Player[tempName][choiceItem].front()=temp;
+    }
+    else{
+        cout<<"Random item was lower rarity"
+    }
 }
