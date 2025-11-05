@@ -150,31 +150,40 @@ int main(){
 void printPlayers(map<string,array<list<Item>,3>>& Player){
         //For loop starts here and prints out the players name
         cout<<endl;
-    bool checkifempty=false;
+    
     for(auto&[Playername,itemArray]:Player){
-        cout<<"Player: "<<Playername<<endl;
-        for(int i=0;i<3;i++){
-            for(auto& item:itemArray[i]){
+        bool checkifempty=true;
+        for (int i = 0; i < 3; i++) {
+            for (auto& item : itemArray[i]) {
+                if (!item.itemname.empty()){ 
+                    checkifempty = false;
+                    break; 
+                }
+            }
+            if (checkifempty==false){
+                break;
+            }  
+        } 
+        if (checkifempty==true) {
+            cout << Playername << " has nothing!" << endl;
+        } 
+        else {
+        cout << "Player: " << Playername << endl;
+        //Loops 3 times to traverse the array of our struct item.
+        for (int i = 0; i < 3; i++) {
+            for (auto& item : itemArray[i]) {
                 if(item.itemname==""){
-                    checkifempty=true;
+                    cout<<"Empty slot!"<<endl;
+                }
+                else{
+                    cout << item.itemname << endl;
+                    cout << "Durability: " << item.durability << endl;
+                    cout << "Rarity: " << item.rarity << endl;
                 }
             }
         }
-        if(checkifempty==true){
-            cout<<Playername<<" has nothing!"<<endl;
-            checkifempty=false;
+        cout << endl;
         }
-        else{
-            //Loops 3 times to traverse the array of our struct item.
-            for(int i=0;i<3;i++){
-                for(auto& item:itemArray[i]){
-                    cout<<item.itemname<<endl;
-                    cout<<"Durability: "<<item.durability<<endl;
-                    cout<<"Rarity: "<<item.rarity<<endl;
-                }
-            }
-        }
-        cout<<endl;
     }
 }
 
