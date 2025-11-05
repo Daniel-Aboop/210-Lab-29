@@ -14,7 +14,8 @@
 
 using namespace std;
 
-
+const int maxDurability=10,lowDurability=0; // If durability reaches 0 Item breaks
+const int maxRarity=10,lowRarity=1; //If other item has higher rarity take swap items.
 struct Item{
     string itemname;
     int durability;
@@ -28,11 +29,6 @@ struct Item{
     void checkdurability(){
         if(durability<=lowDurability){
             itemname="";
-        }
-    }
-    void checkRarity(int rarity,string itemname){
-        if(this->rarity<rarity){
-            this->itemname=itemname;
         }
     }
 };
@@ -232,9 +228,14 @@ void repairitem(map<string,array<list<Item>,3>>& Player,const vector<string>& pl
     int randompartymember=randomPartyMember();
     string tempName=playernames[randompartymember];
     auto& temp2 = Player[tempName][choiceItem].front();
-    temp2.durability++;
-    cout<<tempName<<" added +1 durability to "<<temp2.itemname<<endl;
-    cout<<endl;
+    if(temp2.durability>=maxDurability){
+        cout<<tempName<<" has max durability on "<<temp2.itemname<<" no repair was done"<<endl;
+    }
+    else{
+        temp2.durability++;
+        cout<<tempName<<" added +1 durability to "<<temp2.itemname<<endl;
+        cout<<endl;
+    }
 }
 
 void itemdamage(map<string,array<list<Item>,3>>& Player,const vector<string>& playernames){
@@ -258,8 +259,11 @@ void robbed(map<string,array<list<Item>,3>>& Player,const vector<string>& player
     cout<<"Random player being robbed...unlucky"<<endl;
     int randompartymember=randomPartyMember();
     string tempName=playernames[randompartymember];
-    for(int i=0;i<)
-    auto& temp2 = Player[tempName][choiceItem].front();
+    for(int i=0;i<3;i++){
+    auto& temp2 = Player[tempName][i].front();
+    temp2.robbed=true;
+    temp2.itemname="";
+    }
 }
 void replaceitems(map<string,array<list<Item>,3>>& Player,const vector<string>& playernames){
 
