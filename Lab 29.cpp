@@ -128,14 +128,13 @@ int main(){
             lootingItems(Players,playernames);
         }
         if(randomprob()<=30){
-            cout<<"Item gained durability"<<endl;
+            repairitem(Players,playernames);
         }
         if(randomprob()<=30){
-            cout<<"Item loss durability"<<endl;
+            itemdamage(Players,playernames);
         }
-        
         if(randomprob()<=5){
-            cout<<"Robbed by thieves"<<endl;
+            robbed(Players,playernames);
         }
         if(randomprob()<=50){
             cout<<"replacing items"<<endl;
@@ -157,17 +156,30 @@ int main(){
     //Prints out all players in the map
 void printPlayers(map<string,array<list<Item>,3>>& Player){
         //For loop starts here and prints out the players name
+    bool checkifempty=false;
     for(auto&[Playername,itemArray]:Player){
         cout<<"Player: "<<Playername<<endl;
+        for(int i=0;i<3;i++){
+            for(auto& item:itemArray[i]){
+                if(item.itemname==""){
+                    checkifempty=true;
+                }
+            }
+        }
+        if(checkifempty==true){
+            cout<<Playername<<" has nothing!"<<endl;
+            checkifempty=false;
+        }
+        else{
             //Loops 3 times to traverse the array of our struct item.
             for(int i=0;i<3;i++){
                 for(auto& item:itemArray[i]){
-
                     cout<<item.itemname<<endl;
                     cout<<"Durability: "<<item.durability<<endl;
                     cout<<"Rarity: "<<item.rarity<<endl;
                 }
             }
+        }
             cout<<endl;
     }
 }
@@ -226,7 +238,6 @@ void lootingItems(map<string,array<list<Item>,3>>& Player,const vector<string>& 
         cout<<tempName<<" didnt want Random item it was a lower rarity"<<endl;
         cout<<endl;
     }
-    
 }
 
 void repairitem(map<string,array<list<Item>,3>>& Player,const vector<string>& playernames){
