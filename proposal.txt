@@ -1,3 +1,6 @@
+// COMSC-210 | Lab 29-Alpha | Daniel Santisteban
+// IDE used: VS Code
+
 //Include headers for file handling the data structures, etc
 
 //Define functions to simulate a players invetorys changes throughout gameplay ex: trading, item durability, invetory status, looting items
