@@ -44,7 +44,7 @@ void itemDamage(map<string,array<list<Item>,3>>& Player);
 void repairitem(map<string,array<list<Item>,3>>& Player);
 void robbed(map<string,array<list<Item>,3>>& Player);
 void replaceitems(map<string,array<list<Item>,3>>& Player);
-//Added the randomprob and random party member for ease of acceess of a random number;
+//Added the randomprob and random party member and item for ease of access of a random number within those bounds
 int randomprob(){
         int rand1= rand() % 100 + 1;
         return rand1;
@@ -54,7 +54,7 @@ int randomPartyMember(){
     return rand2;
 }
 int randomitemNum(){
-    
+    int rand3=rand()%3+1;
 }
 
 // Added random item generator while not truly random it gets the job done and its meant to replace lost items etc
@@ -122,6 +122,11 @@ int main(){
         cout<<"Iteration: "<<i+1<<endl;
         if(randomprob()<=60){
             cout<<"Trading"<<endl;
+            int temp1=randomPartyMember();
+            int temp2=randomPartyMember();
+            while(temp1==temp2){
+                    temp2=randomPartyMember();
+            }
         }
         if(randomprob()<=40){
             cout<<"Looting"<<endl;
