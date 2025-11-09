@@ -119,7 +119,7 @@ int main(){
     //Prints players at the start of our function
     printPlayers(Players);
    cout<<"Simulation begins now"<<endl;
-    for(int i=0;i<30;i++){
+    for(int i=0;i<50;i++){
         cout<<"Iteration: "<<i+1<<endl;
         if(randomprob()<=60){
             trading(Players,playernames);
@@ -251,12 +251,18 @@ void repairitem(map<string,array<list<Item>,3>>& Player,const vector<string>& pl
     if(temp2.robbed==false){
         if(temp2.durability>=maxDurability){
             cout<<tempName<<" has max durability on "<<temp2.itemname<<" no repair was done"<<endl;
+            cout<<endl;
         }
         else{
             temp2.durability++;
             cout<<tempName<<" added +1 durability to "<<temp2.itemname<<endl;
             cout<<endl;
         }
+    }
+    else{
+        cout<<tempName<<" has no item in that slot"<<endl;
+        cout<<endl;
+    
     }
 }
 
@@ -276,6 +282,9 @@ void itemdamage(map<string,array<list<Item>,3>>& Player,const vector<string>& pl
         cout<<tempName<<" lost 1 durability on "<<temp2.itemname<<endl;
         cout<<endl;
         }
+    }
+    else{
+        cout<<tempName<<" has no item in that slot"<<endl;
     }
 }
 
@@ -302,6 +311,7 @@ void replaceitems(map<string,array<list<Item>,3>>& Player,const vector<string>& 
     if(temp2.robbed==true){
         Item temp=randomItem(choiceItem);
         temp2=temp; 
+        cout<<tempName<<" gained "<<temp2.itemname<<endl;
     }
     else{
         cout<<tempName<<" does not need a item to be replaced..."<<endl;
