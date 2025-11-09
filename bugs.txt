@@ -1,0 +1,14 @@
+When creating the trading function I came accross an error "terminate called after throwing an instance of 'std::length_error'
+  what():  basic_string::_M_create" I thought it was due to way I was reading the file so I changed it and then I thought it was the function itself so I added more precautions and still came across it but it was because vectors read from 0 and my random Party member function was giving random
+  numbers between 1-10 when the vector reads from 0-9 off by one...
+
+  Had to add checks for every function to properly output data if the item was robbed or not. Since it wasnt outputting everything
+
+  passed the vector names as a const reference 
+
+  For clairty I changed the randomItem function to produce a random item to always return a Item struct.
+
+  Attempted to do the effect to wait a couple seconds before each iteration, wasnt able to reproduce it.
+
+  
+

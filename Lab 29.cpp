@@ -29,6 +29,7 @@ struct Item{
     void checkdurability(){
         if(durability<=lowDurability){
             itemname="";
+            rarity=0;
         }
     }
 };
@@ -119,7 +120,7 @@ int main(){
     //Prints players at the start of our function
     printPlayers(Players);
    cout<<"Simulation begins now"<<endl;
-    for(int i=0;i<50;i++){
+    for(int i=0;i<30;i++){
         cout<<"Iteration: "<<i+1<<endl;
         if(randomprob()<=60){
             trading(Players,playernames);
