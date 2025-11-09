@@ -80,7 +80,7 @@ Item randomItem(int choice){
     }
 }
 
-// File path for testing. C:\\Users\\hope4\\Desktop\\COMSC 210 Work\\210-Lab-29\\PartyData.txt
+// Use PartyData.txt for testing
 int main(){
     srand(time(0));
     map<string,array<list<Item>,3>> Players;

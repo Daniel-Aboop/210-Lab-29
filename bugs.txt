@@ -10,5 +10,7 @@ When creating the trading function I came accross an error "terminate called aft
 
   Attempted to do the effect to wait a couple seconds before each iteration, wasnt able to reproduce it.
 
-  
+  Fixed the check durability if statement as it should make the rarity 0 if its a broken item along with the itemname being gone.
+
+  Added comment that says use PartyData.txt for testing and also using this program.
 
